@@ -1,6 +1,9 @@
 <html>
 <head>
-
+<script type = "text/javascript" src="jscript/jquery.1.js"></script>
+<script type="text/javascript">
+	
+</script>
 </head>
 <body>
 <title>TABEL BIODATA</title>
@@ -46,21 +49,49 @@
 <table border="0">
 <tr>
 <td>NPM :</td>
-<td><input type="text"></td>
+<td><input type="text" id = "npm"/></td>
 </tr>
 
 <tr>
 <td>NAMA :</td>
-<td><input type="text"></td>
+<td><input type="text" id = "nama"/></td>
 </tr>
 
 <tr>
 <td>TGL LAHIR :</td>
-<td><input type="text"></td>
+<td><input type="text" id = "lahir"/></td>
 </tr>
 
 </table>
-<input type="submit" value="SUBMIT">
+<input type = "submit" onclick = "button()" value = "SUBMIT">
+
+<script type="text/javascript">
+function button(){
+ 
+ 	var x = document.getElementById('npm');
+ 	var y = document.getElementById('nama');
+ 	var z = document.getElementById('lahir');
+
+ if(x.value == "" && y.value == "" && z.value == "")
+  alert("NPM, Nama, dan Tanggal Lahir masih kosong ")
+ else
+
+ 	if(x.value == "")
+  		alert("NPM masih kosong ")
+ 	else
+ 	
+ 	if(y.value == "")
+  		alert("Nama masih kosong ")
+ 	else
+ 	
+ 	if(z.value == "")
+  		alert("Tanggal Lahir masih kosong ")
+ 	else
+
+  		alert("Sudah Terisi")  
+}
+
+</script>
 </form>
 </center>
 </body>
