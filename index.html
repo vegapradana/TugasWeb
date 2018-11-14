@@ -4,10 +4,13 @@
 <script type="text/javascript">
 	
 </script>
+
+<link rel = "stylesheet" type="text/css" href="style.css">
+
 </head>
 <body>
 <title>TABEL BIODATA</title>
-<link rel = "stylesheet" type="text/css" href="/tugasweb/style.css">
+
 
 <center>
 <h1>TABEL BIODATA</h1>
@@ -62,33 +65,60 @@
 <td><input type="text" id = "lahir"/></td>
 </tr>
 
+<tr>
+<td>PASSWORD :</td>
+<td><input type="password" id = "pass"/></td>
+</tr>
+
+<tr>
+<td>CONFIRM PASSWORD :</td>
+<td><input type="password" id = "confirmpass"/></td>
+</tr>
+
 </table>
 <input type = "submit" onclick = "button()" value = "SUBMIT">
 
 <script type="text/javascript">
 function button(){
- 
+ 	
+ 	var u = document.getElementById('pass');
+ 	var v = document.getElementById('confirmpass');
  	var x = document.getElementById('npm');
  	var y = document.getElementById('nama');
  	var z = document.getElementById('lahir');
 
- if(x.value == "" && y.value == "" && z.value == "")
-  alert("NPM, Nama, dan Tanggal Lahir masih kosong ")
- else
-
- 	if(x.value == "")
+ 	if(x.value == "" && y.value == "" && z.value == ""){
+  		alert("NPM, Nama, dan Tanggal Lahir masih kosong ")
+ 	}
+ 	
+ 	else if(x.value == ""){
   		alert("NPM masih kosong ")
- 	else
+ 	}
  	
- 	if(y.value == "")
+ 	else if(y.value == ""){
   		alert("Nama masih kosong ")
- 	else
+ 	}
  	
- 	if(z.value == "")
+ 	else if(z.value == ""){
   		alert("Tanggal Lahir masih kosong ")
- 	else
+ 	}
+  	
+  	else if(u.value == ""){
+  		alert("Password masih kosong ")
+  	}
+  	
+  	else if(v.value == ""){
+  		alert("Confirm Password masih kosong ")
+  	}
+  	
+  	else if(u.value != v.value){
+  		alert("Password Tidak Serupa!")
+  	}
+ 	
+ 	else{
 
-  		alert("Sudah Terisi")  
+  		alert("Sudah Terisi") }
+  		 
 }
 
 </script>
