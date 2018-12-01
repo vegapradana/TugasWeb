@@ -4,7 +4,7 @@
 <script type="text/javascript">
 	
 </script>
-
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <link rel = "stylesheet" type="text/css" href="style.css">
 
 </head>
@@ -21,58 +21,68 @@ if(isset($_SESSION['pos'])):
   $npm   =$_SESSION['pos']['npm'];
   $nama   =$_SESSION['pos']['nama'];
   $tgl_lahir =$_SESSION['pos']['lahir'];
-  $password =$_SESSION['pos']['pass'];
+  $pass =$_SESSION['pos']['pass'];
   $confirmpassword =$_SESSION['pos']['confirmpass']; 
 else:
   $npm   ='';
   $nama   ='';
   $tgl_lahir ='';
-  $password ='';
+  $pass ='';
   $confirmpassword ='';
 endif;
 ?>
 
 
+<?php
+include "koneksidb.php";
+$query = mysqli_query($connection,"SELECT * FROM tbl_biodata ORDER BY id asc");
+?>
 
 <title>TABEL BIODATA</title>
 
 
 <center>
 <h1>TABEL BIODATA</h1>
-<table border="1">
+<table border="1" class="table table-striped table-dark" >
+  <thead>
 <tr>
+<td>NO</td>
 <td>NPM</td>
 <td>NAMA</td>
 <td>TGL LAHIR</td>
+<td>PASSWORD</td>
+<td>ACTION</td>
 </tr>
-<tr>
-<td>17115008</td>
-<td>Vega Pradana</td>
-<td>20 Agustus 1997</td>
-</tr>
-<tr>
-<td>16115374</td>
-<td>Sandro Sipangkar</td>
-<td>30 Desember 1996</td>
-</tr>
-<tr>
-<td>16115237</td>
-<td>Rofinesi</td>
-<td>10 April 1997</td>
-</tr>
-<tr>
-<td>11115070</td>
-<td>Arya Eka</td>
-<td>12 Januari 1997</td>
-</tr>
-<tr>
-<td>151159019</td>
-<td>Budi</td>
-<td>4 Maret 1997</td>
-</tr>
+</thead>
+
+
+<?php if(mysqli_num_rows($query)>0){ ?>
+        <?php
+            $no = 1;
+            while($data = mysqli_fetch_array($query)){
+        ?>
+        <tbody>
+        <tr>
+            <td><?php echo $no ?></td>
+            <td><?php echo $data["npm"];?></td>
+            <td><?php echo $data["nama"];?></td>
+            <td><?php echo $data["tgl_lahir"];?></td>
+            <td><?php echo $data["password"];?></td>
+            <td>
+                <a href="delete.php?id=<?php echo $data['id'];?>">Delete</a> 
+            </td>
+        </tr>
+      </tbody>
+
+      <?php $no++; } ?>
+        <?php } ?>
+
 </table>
+
+
+
 <br>
-<form method="post" name="frm" action="">
+<form method="post" name="frm" action="tambah.php">
 <p>FORM</p>
 <table border="0">
 <tr>
@@ -87,12 +97,12 @@ endif;
 
 <tr>
 <td>TGL LAHIR :</td>
-<td><input type="text" name="lahir" value="<?php echo $tgl_lahir; ?>" id = "lahir"/></td>
+<td><input type="text" name="tgl_lahir" value="<?php echo $tgl_lahir; ?>" id = "lahir"/></td>
 </tr>
 
 <tr>
 <td>PASSWORD :</td>
-<td><input type="password" name = "pass" value="<?php echo $password; ?>" id = "pass"/></td>
+<td><input type="password" name = "password" value="<?php echo $pass; ?>" id = "pass"/></td>
 </tr>
 
 <tr>
@@ -145,12 +155,7 @@ function button(){
   	else if(u.value != v.value){
   		alert("Password Tidak Serupa!");
   	}
- 	
- 	else{
 
-  		alert("Sudah Terisi"); }
-  		 
-}
 
 </script>
 </form>
